@@ -45,7 +45,7 @@
 
 <section id="community" class="page"><div class="eyebrow">MealMate Community</div><h1 class="title">Cộng đồng ăn ngon cùng nhau 👥</h1><p class="sub">Reel, KOL/KOC, bạn bè chia sẻ món ăn trong ngày — và bạn cũng có thể tự đăng.</p><div class="filters"><button class="filter active" onclick="filterCommunity('all',this)">🔥 Dành cho bạn</button><button class="filter" onclick="filterCommunity('reel',this)">🎬 Reels</button><button class="filter" onclick="filterCommunity('creator',this)">👩‍🍳 KOL/KOC</button><button class="filter" onclick="filterCommunity('friend',this)">👫 Bạn bè</button><button class="btn btn-light" onclick="openPostModal()">＋ Tạo Reel/Bài đăng</button></div><div id="communityGrid" class="community-grid"></div></section>
 
-<section id="tracking" class="page"><div class="eyebrow">My Eating</div><h1 class="title">Theo dõi thói quen ăn uống</h1><p class="sub">Mỗi ngày có 3 bữa. Tích đủ <b>3/3 bữa</b> để hoàn thành ngày và duy trì streak.</p><div class="stats"><div class="stat"><span class="muted">Bữa đã hoàn thành</span><b id="trackDone">0/21</b></div><div class="stat"><span class="muted">Ngày đủ 3 bữa</span><b id="fullDays">0/7</b></div><div class="stat"><span class="muted">Tỷ lệ hoàn thành</span><b id="completionRate">0%</b></div><div class="stat"><span class="muted">Streak hiện tại</span><b id="trackStreak">🔥 0 ngày</b></div></div><div class="tracking-wrap" style="margin-top:18px"><div class="card"><div class="section-head"><div><h3>Thang đo 7 ngày</h3><span class="muted" id="weekRange"></span></div><span>Thứ 2 → CN</span></div><div class="legend"><span><i class="legend-dot legend-green"></i>Đã hoàn thành</span><span><i class="legend-dot legend-gray"></i>Chưa hoàn thành</span></div><p class="muted">Cách đọc biểu đồ: mỗi cột tương ứng 1 ngày, tối đa <b>3 bữa</b>. Cột cao hơn = bạn hoàn thành nhiều bữa hơn.</p><div class="scale-chart"><div class="y-axis"><span>3</span><span>2</span><span>1</span><span>0</span></div><div id="habitChart" class="chart-area"></div></div><div class="muted" style="margin-top:8px;text-align:center">Số bữa hoàn thành trong ngày</div></div><div class="card streak"><h3>🔥 Meal Streak</h3><div class="streak-num" id="streakBig">0 ngày</div><p class="sub">Streak tăng khi bạn hoàn thành đủ 3 bữa trong ngày. Hãy duy trì đều đặn!</p><button class="btn btn-primary" onclick="goToTodayTracking()">Check-in bữa hôm nay</button></div></div><div class="card" style="margin-top:18px"><div class="section-head"><h3>Check-in 3 bữa trong tuần</h3><span class="muted">Thống kê từ Thứ 2 → Chủ nhật</span></div><div id="habitTable" class="habit-table"></div></div></section>
+<section id="tracking" class="page"><div class="eyebrow">My Eating</div><h1 class="title">Theo dõi thói quen ăn uống</h1><p class="sub">Mỗi ngày có 3 bữa. Tích đủ <b>3/3 bữa</b> để hoàn thành ngày và duy trì streak.</p><div class="stats"><div class="stat"><span class="muted">Bữa đã hoàn thành</span><b id="trackDone">0/21</b></div><div class="stat"><span class="muted">Ngày đủ 3 bữa</span><b id="fullDays">0/7</b></div><div class="stat"><span class="muted">Tỷ lệ hoàn thành</span><b id="completionRate">0%</b></div><div class="stat"><span class="muted">Streak hiện tại</span><b id="trackStreak">🔥 0 ngày</b></div></div><div class="tracking-wrap" style="margin-top:18px"><div class="card"><div class="section-head"><div><h3>Thang đo 7 ngày</h3><span class="muted" id="weekRange"></span></div><span>Thứ 2 → CN</span></div><div class="legend"><span><i class="legend-dot legend-green"></i>Đã hoàn thành</span><span><i class="legend-dot legend-gray"></i>Chưa hoàn thành</span></div><p class="muted">Cách đọc biểu đồ: mỗi cột tương ứng 1 ngày, tối đa <b>3 bữa</b>. Cột cao hơn = bạn hoàn thành nhiều bữa hơn.</p><div class="scale-chart"><div class="y-axis"><span>3</span><span>2</span><span>1</span><span>0</span></div><div id="habitChart" class="chart-area"></div></div><div class="muted" style="margin-top:8px;text-align:center">Số bữa hoàn thành trong ngày</div></div><div class="card streak"><h3>🔥 Meal Streak</h3><div class="streak-num" id="streakBig">0 ngày</div><p class="sub">Streak tăng khi bạn hoàn thành đủ 3 bữa trong ngày. Nếu hôm nay chưa đủ, chuỗi ngày hoàn thành gần nhất vẫn được giữ!</p><button class="btn btn-primary" onclick="goToTodayTracking()">Check-in bữa hôm nay</button></div></div><div class="card" style="margin-top:18px"><div class="section-head"><h3>Check-in 3 bữa trong tuần</h3><span class="muted">Thống kê từ Thứ 2 → Chủ nhật</span></div><div id="habitTable" class="habit-table"></div></div></section>
 
 <section id="settings" class="page"><div class="eyebrow">Profile & MealMate Plus</div><h1 class="title">Cá nhân hóa</h1><p class="sub">Tên hiển thị có thể thay đổi bất cứ lúc nào trên thiết bị này.</p><div class="profile-grid"><div class="card"><h3>Thông tin của bạn</h3><div class="form-row"><div><label class="muted">Tên hiển thị</label><input id="settingsName" class="input"></div><div><label class="muted">Ngân sách/ngày</label><input class="input" value="70.000đ"></div></div><button class="btn btn-primary" onclick="saveNameFromSettings()">Lưu tên</button><h3 style="margin-top:24px">Ưu tiên</h3><div class="filters"><button class="filter active">💰 Tiết kiệm</button><button class="filter active">⚡ Nhanh</button><button class="filter">🥗 Healthy</button><button class="filter">🍳 Dễ nấu</button></div><p class="muted">Lưu ý: đây là prototype front-end, tên được lưu bằng trình duyệt (localStorage), chưa phải tài khoản thật dùng chung nhiều thiết bị.</p></div><div class="card price"><div class="tag">MEALMATE PLUS</div><h2>Ăn uống thông minh hơn</h2><div class="price-num">19.000đ <small>/ tháng</small></div><p class="sub">Mở khóa các tính năng nâng cao.</p><ul style="line-height:2;color:#536a62"><li>Gợi ý món không giới hạn</li><li>Lên kế hoạch bữa ăn theo tuần</li><li>Danh sách mua sắm tự động</li><li>Theo dõi dinh dưỡng chi tiết</li><li>Trợ lý AI MealMate</li></ul><button class="btn btn-primary" style="width:100%" onclick="showToast('Đây là prototype — thanh toán chưa kết nối.')">Nâng cấp ngay</button></div></div><div class="card" style="margin-top:18px"><h3>🔗 Đối tác mua đồ ăn</h3><p class="sub">Khi người dùng muốn đặt món, các nút đối tác sẽ mở trang tương ứng. Liên kết hiện là link thông thường; để nhận hoa hồng cần thay bằng affiliate/tracking link chính thức sau khi có hợp tác.</p><div class="partner-row"><button class="partner grab" onclick="openPartner('https://www.grab.com/vn/en/food/')">GrabFood</button><button class="partner shopee" onclick="openPartner('https://shopeefood.vn/')">ShopeeFood</button><button class="partner gsm" onclick="openPartner('https://www.greensm.com/vn-vi/greensm-ngon')">Xanh SM Food</button></div></div></section>
 </main></div>
@@ -171,11 +171,32 @@ function getHabit(){
   return data;
 }
 function currentStreak(){
-  let cursor=new Date(),streak=0;
-  while(getDayHabit(cursor).every(Boolean)){
+  // Tìm ngày gần nhất đã hoàn thành đủ 3 bữa.
+  // Nếu hôm nay chưa đủ, streak vẫn được giữ từ ngày hoàn thành gần nhất.
+  // Sau đó đếm ngược các ngày LIÊN TIẾP đã hoàn thành.
+  let cursor=new Date();
+
+  // Nếu hôm nay chưa đủ 3 bữa, bắt đầu tìm từ hôm qua.
+  if(!getDayHabit(cursor).every(Boolean)){
+    cursor.setDate(cursor.getDate()-1);
+  }
+
+  // Tìm ngày hoàn thành gần nhất, không bị giới hạn bởi vị trí trong tuần.
+  let safety=0;
+  while(!getDayHabit(cursor).every(Boolean) && safety<365){
+    cursor.setDate(cursor.getDate()-1);
+    safety++;
+  }
+
+  if(safety>=365) return 0;
+
+  // Đếm chuỗi ngày liên tiếp hoàn thành.
+  let streak=0;
+  while(getDayHabit(cursor).every(Boolean) && streak<365){
     streak++;
     cursor.setDate(cursor.getDate()-1);
   }
+
   return streak;
 }
 function renderTracking(){
@@ -233,8 +254,12 @@ function toggleHabit(day,meal){
   data[meal]=!data[meal];
   saveDayHabit(d,data);
   renderTracking();
-  if(data.every(Boolean)) showToast('🎉 Đủ 3 bữa hôm nay! Meal Streak đã tự cập nhật.');
-  else showToast(data[meal]?'Đã check-in bữa ăn ✓':'Đã bỏ check-in');
+  if(data.every(Boolean)){
+    const today=dateKey(new Date())===dateKey(d);
+    showToast(today?'🎉 Đủ 3 bữa hôm nay! Meal Streak đã tự cập nhật.':'🎉 Ngày này đã đủ 3 bữa! Meal Streak đã cập nhật.');
+  }else{
+    showToast(data[meal]?'Đã check-in bữa ăn ✓':'Đã bỏ check-in');
+  }
 }
 function updateDashboardStats(data){
   const done=data.flat().filter(Boolean).length;
