@@ -37,7 +37,7 @@
   <div class="card" style="margin-top:18px;background:#f0faf5"><div style="display:flex;gap:16px;align-items:center"><div class="avatar" style="width:58px;height:58px"><img src="mealmate-logo.png" alt="Mate"></div><div><b>Mate nhắc bạn 💚</b><p class="sub" style="margin:5px 0 0">Một bữa ăn ngon không chỉ giúp bạn đủ năng lượng, mà còn là cách để yêu thương chính mình.</p></div></div></div>
 </section>
 
-<section id="schedule" class="page"><div class="eyebrow">My Schedule</div><h1 class="title">Lịch của tôi</h1><p class="sub">Xem trực quan lịch học, làm thêm và thời gian rảnh từ Thứ 2 đến Chủ nhật.</p><div class="card"><div class="section-head"><h3>Lịch tuần này</h3><button class="btn btn-primary" onclick="addEvent()">+ Thêm lịch</button></div><div id="weekSchedule" class="week-grid"></div></div><div class="card" style="margin-top:18px"><h3>MealMate đọc lịch như thế nào?</h3><p class="sub">Ngày càng bận, hệ thống càng ưu tiên món ít thời gian chuẩn bị. Bạn có thể thay đổi lịch mẫu này trong phiên bản phát triển tiếp theo.</p><div class="legend"><span><i class="legend-dot" style="background:#5c9ded"></i>Học</span><span><i class="legend-dot" style="background:#ff9f43"></i>Làm thêm</span><span><i class="legend-dot" style="background:#10a873"></i>Rảnh</span></div></div></section>
+<section id="schedule" class="page"><div class="eyebrow">My Schedule</div><h1 class="title">Lịch của tôi</h1><p class="sub">Xem trực quan lịch học, làm thêm và thời gian rảnh từ Thứ 2 đến Chủ nhật.</p><div class="card"><div class="section-head"><h3>Lịch tuần này</h3><button class="btn btn-primary" onclick="addEvent()">+ Thêm lịch</button></div><div id="weekSchedule" class="week-grid"></div></div><div class="card" style="margin-top:18px"><h3>MealMate đọc lịch như thế nào?</h3><p class="sub">Lịch được phân bổ khác nhau theo từng ngày; Thứ 7 và Chủ nhật mặc định là thời gian rảnh. Bạn có thể chỉnh tiếp dữ liệu lịch trong phiên bản phát triển.</p><div class="legend"><span><i class="legend-dot" style="background:#5c9ded"></i>Học</span><span><i class="legend-dot" style="background:#ff9f43"></i>Làm thêm</span><span><i class="legend-dot" style="background:#10a873"></i>Rảnh</span></div></div></section>
 
 <section id="ingredients" class="page"><div class="eyebrow">My Ingredients</div><h1 class="title">Nguyên liệu của tôi</h1><p class="sub">Tích chọn nguyên liệu đang có trong phòng trọ hoặc tự gõ nguyên liệu mới.</p><div class="grid grid-2"><div class="card"><input id="ingredientSearch" class="input" placeholder="🔎 Tìm nguyên liệu..." oninput="renderIngredients()"><div id="ingredientCategories"></div><div class="custom-row"><input id="customIngredient" class="input" placeholder="Ví dụ: cá ngừ, nấm kim châm..."><button class="btn btn-primary" onclick="addCustomIngredient()">＋ Thêm</button></div><button class="btn btn-primary" style="margin-top:15px" onclick="saveIngredients()">Lưu nguyên liệu</button></div><div class="card"><div class="section-head"><div><h3>Nguyên liệu hiện có</h3><p class="sub" style="margin-bottom:0"><span id="selectedCount">0</span> loại</p></div><span>🧺</span></div><div id="selectedList"></div><button class="btn btn-light" style="margin-top:10px;width:100%" onclick="go('suggestions')">Tìm món từ nguyên liệu này →</button></div></div></section>
 
@@ -102,7 +102,40 @@ function closeModal(){document.getElementById('recipeModal').classList.remove('s
 function monday(d){const x=new Date(d);const day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);x.setHours(0,0,0,0);return x}
 function fmt(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')}
 function dayName(i){return ['T2','T3','T4','T5','T6','T7','CN'][i]}
-function renderWeekSchedule(){const root=document.getElementById('weekSchedule');root.innerHTML='';const start=monday(new Date());const patterns=[['07:30–11:30','Học tại trường','study'],['13:00–17:00','Làm thêm','work'],['18:00–22:00','Thời gian rảnh','free']];for(let i=0;i<7;i++){const d=new Date(start);d.setDate(start.getDate()+i);const busy=i===0||i===2||i===4?'Cao':i===1||i===3?'Vừa':'Nhẹ';const c=document.createElement('div');c.className='day-card'+(d.toDateString()===new Date().toDateString()?' today':'');c.innerHTML='<div class="day-name">'+dayName(i)+'</div><div class="day-date">'+fmt(d)+'</div>'+patterns.map(p=>'<div class="day-event '+p[2]+'"><b>'+p[0]+'</b><br>'+p[1]+'</div>').join('')+'<span class="busy-pill '+(busy==='Cao'?'busy-high':busy==='Vừa'?'busy-mid':'busy-low')+'">Lịch bận: '+busy+'</span>';root.appendChild(c)}}
+const DEFAULT_SCHEDULE=[
+  [['07:30–11:30','Học tại trường','study'],['13:00–17:00','Làm thêm','work'],['18:00–22:00','Thời gian rảnh','free']],
+  [['07:30–11:30','Học tại trường','study'],['13:00–17:00','Thời gian rảnh','free'],['18:00–21:00','Làm thêm','work']],
+  [['07:30–11:30','Thời gian rảnh','free'],['13:00–17:00','Học tại trường','study'],['18:00–22:00','Thời gian rảnh','free']],
+  [['07:30–11:30','Học tại trường','study'],['13:00–17:00','Làm thêm','work'],['18:00–22:00','Thời gian rảnh','free']],
+  [['07:30–11:30','Học tại trường','study'],['13:00–17:00','Thời gian rảnh','free'],['18:00–21:00','Làm thêm','work']],
+  [['08:00–12:00','Thời gian rảnh','free'],['13:00–17:00','Thời gian rảnh','free'],['18:00–22:00','Thời gian rảnh','free']],
+  [['08:00–12:00','Thời gian rảnh','free'],['13:00–17:00','Thời gian rảnh','free'],['18:00–22:00','Thời gian rảnh','free']]
+];
+
+function getSchedule(){
+  const saved=JSON.parse(localStorage.getItem('mealMateSchedule')||'null');
+  return Array.isArray(saved)&&saved.length===7?saved:DEFAULT_SCHEDULE;
+}
+
+function renderWeekSchedule(){
+  const root=document.getElementById('weekSchedule');
+  root.innerHTML='';
+  const start=monday(new Date());
+  const schedule=getSchedule();
+
+  for(let i=0;i<7;i++){
+    const d=new Date(start);
+    d.setDate(start.getDate()+i);
+    const events=schedule[i]||[];
+    const busy=i>=5?'Nhẹ':events.filter(x=>x[2]!=='free').length>=2?'Cao':events.some(x=>x[2]!=='free')?'Vừa':'Nhẹ';
+    const c=document.createElement('div');
+    c.className='day-card'+(d.toDateString()===new Date().toDateString()?' today':'');
+    c.innerHTML='<div class="day-name">'+dayName(i)+'</div><div class="day-date">'+fmt(d)+'</div>'+
+      events.map(p=>'<div class="day-event '+p[2]+'"><b>'+p[0]+'</b><br>'+p[1]+'</div>').join('')+
+      '<span class="busy-pill '+(busy==='Cao'?'busy-high':busy==='Vừa'?'busy-mid':'busy-low')+'">Lịch bận: '+busy+'</span>';
+    root.appendChild(c);
+  }
+}
 
 const communitySeed=[
 {type:'reel',user:'Mai Foodie',role:'KOC',emoji:'🍜',title:'Mì trứng 10 phút cho ngày chạy deadline',text:'Không có thời gian vẫn có thể ăn nóng và đủ năng lượng.',likes:128},
@@ -119,13 +152,96 @@ function openPostModal(){document.getElementById('postModal').classList.add('sho
 function closePostModal(){document.getElementById('postModal').classList.remove('show')}
 function createPost(){const type=document.getElementById('postType').value,dish=document.getElementById('postDish').value.trim(),text=document.getElementById('postText').value.trim();if(!dish||!text){showToast('Hãy nhập món ăn và nội dung nhé!');return}const p={type,user:getName(),role:type==='creator'?'KOL/KOC':type==='reel'?'Bạn':'Bạn bè',emoji:type==='reel'?'🎬':'🍽️',title:dish,text,likes:0};userPosts.unshift(p);localStorage.setItem('mealMatePosts',JSON.stringify(userPosts));closePostModal();document.getElementById('postDish').value='';document.getElementById('postText').value='';renderCommunity();showToast('Đã đăng bài lên cộng đồng ✓')}
 
-function weekKey(){const s=monday(new Date());return s.toISOString().slice(0,10)}
-function getHabit(){const key='mealMateHabit_'+weekKey();let data=JSON.parse(localStorage.getItem(key)||'null');if(!data){data=Array.from({length:7},(_,i)=>[i<2,i<2,i<2]);data[2]=[true,true,false];data[3]=[true,false,false];localStorage.setItem(key,JSON.stringify(data))}return data}
-function saveHabit(data){localStorage.setItem('mealMateHabit_'+weekKey(),JSON.stringify(data))}
-function currentStreak(data){let today=(new Date().getDay()+6)%7;let s=0;for(let i=today;i>=0;i--){if(data[i].every(Boolean))s++;else break}return s}
-function renderTracking(){const data=getHabit();const done=data.flat().filter(Boolean).length;const full=data.filter(x=>x.every(Boolean)).length;document.getElementById('trackDone').textContent=done+'/21';document.getElementById('fullDays').textContent=full+'/7';document.getElementById('completionRate').textContent=Math.round(done/21*100)+'%';const streak=currentStreak(data);document.getElementById('trackStreak').textContent='🔥 '+streak+' ngày';document.getElementById('streakBig').textContent=streak+' ngày';const start=monday(new Date()),end=new Date(start);end.setDate(start.getDate()+6);document.getElementById('weekRange').textContent=fmt(start)+' – '+fmt(end);const chart=document.getElementById('habitChart');chart.innerHTML='';for(let i=0;i<7;i++){const col=document.createElement('div');col.className='bar-col';const stack=document.createElement('div');stack.className='stack';for(let m=0;m<3;m++){const seg=document.createElement('div');seg.className='seg '+(data[i][m]?'done':'');seg.title=['Bữa sáng','Bữa trưa','Bữa tối'][m]+(data[i][m]?' • đã hoàn thành':' • chưa hoàn thành');stack.appendChild(seg)}col.appendChild(stack);col.insertAdjacentHTML('beforeend','div class="bar-day">'+dayName(i)+'</div>');chart.appendChild(col)}const table=document.getElementById('habitTable');table.innerHTML='<div></div>'+Array.from({length:7},(_,i)=>'<div class="habit-cell head">'+dayName(i)+'</div>').join('');['🌅 Sáng','☀️ Trưa','🌙 Tối'].forEach((label,m)=>{table.insertAdjacentHTML('beforeend','<div class="meal-label">'+label+'</div>');for(let i=0;i<7;i++){const d=document.createElement('div');d.className='habit-cell';const b=document.createElement('button');b.className='meal-check '+(data[i][m]?'done':'');b.textContent=data[i][m]?'✓':'';b.title='Tích để ghi nhận '+label+' '+dayName(i);b.onclick=()=>toggleHabit(i,m);d.appendChild(b);table.appendChild(d)}});updateDashboardStats(data)}
-function toggleHabit(day,meal){const data=getHabit();data[day][meal]=!data[day][meal];saveHabit(data);renderTracking();showToast(data[day][meal]?'Đã check-in bữa ăn ✓':'Đã bỏ check-in')}
-function updateDashboardStats(data){const done=data.flat().filter(Boolean).length;document.getElementById('dashDone').textContent=done+'/21';document.getElementById('dashOnTime').textContent=done+'/21';document.getElementById('dashStreak').textContent='🔥 '+currentStreak(data)+' ngày'}
+function dateKey(d=new Date()){
+  const x=new Date(d);
+  return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');
+}
+function habitKey(d=new Date()){return 'mealMateHabit_'+dateKey(d)}
+function getDayHabit(d=new Date()){
+  const data=JSON.parse(localStorage.getItem(habitKey(d))||'null');
+  return Array.isArray(data)&&data.length===3?data.map(Boolean):[false,false,false];
+}
+function saveDayHabit(d,data){localStorage.setItem(habitKey(d),JSON.stringify(data.map(Boolean)))}
+function getHabit(){
+  const start=monday(new Date()),data=[];
+  for(let i=0;i<7;i++){
+    const d=new Date(start);d.setDate(start.getDate()+i);
+    data.push(getDayHabit(d));
+  }
+  return data;
+}
+function currentStreak(){
+  let cursor=new Date(),streak=0;
+  while(getDayHabit(cursor).every(Boolean)){
+    streak++;
+    cursor.setDate(cursor.getDate()-1);
+  }
+  return streak;
+}
+function renderTracking(){
+  const data=getHabit();
+  const done=data.flat().filter(Boolean).length;
+  const full=data.filter(x=>x.every(Boolean)).length;
+  document.getElementById('trackDone').textContent=done+'/21';
+  document.getElementById('fullDays').textContent=full+'/7';
+  document.getElementById('completionRate').textContent=Math.round(done/21*100)+'%';
+
+  const streak=currentStreak();
+  document.getElementById('trackStreak').textContent='🔥 '+streak+' ngày';
+  document.getElementById('streakBig').textContent=streak+' ngày';
+
+  const start=monday(new Date()),end=new Date(start);
+  end.setDate(start.getDate()+6);
+  document.getElementById('weekRange').textContent=fmt(start)+' – '+fmt(end);
+
+  const chart=document.getElementById('habitChart');
+  chart.innerHTML='';
+  for(let i=0;i<7;i++){
+    const col=document.createElement('div');col.className='bar-col';
+    const stack=document.createElement('div');stack.className='stack';
+    for(let m=0;m<3;m++){
+      const seg=document.createElement('div');
+      seg.className='seg '+(data[i][m]?'done':'');
+      seg.title=['Bữa sáng','Bữa trưa','Bữa tối'][m]+(data[i][m]?' • đã hoàn thành':' • chưa hoàn thành');
+      stack.appendChild(seg);
+    }
+    col.appendChild(stack);
+    col.insertAdjacentHTML('beforeend','<div class="bar-day">'+dayName(i)+'</div>');
+    chart.appendChild(col);
+  }
+
+  const table=document.getElementById('habitTable');
+  table.innerHTML='<div></div>'+Array.from({length:7},(_,i)=>'<div class="habit-cell head">'+dayName(i)+'</div>').join('');
+  ['🌅 Sáng','☀️ Trưa','🌙 Tối'].forEach((label,m)=>{
+    table.insertAdjacentHTML('beforeend','<div class="meal-label">'+label+'</div>');
+    for(let i=0;i<7;i++){
+      const cell=document.createElement('div');cell.className='habit-cell';
+      const b=document.createElement('button');
+      b.className='meal-check '+(data[i][m]?'done':'');
+      b.textContent=data[i][m]?'✓':'';
+      b.title='Tích để ghi nhận '+label+' '+dayName(i);
+      b.onclick=()=>toggleHabit(i,m);
+      cell.appendChild(b);table.appendChild(cell);
+    }
+  });
+  updateDashboardStats(data);
+}
+function toggleHabit(day,meal){
+  const start=monday(new Date()),d=new Date(start);
+  d.setDate(start.getDate()+day);
+  const data=getDayHabit(d);
+  data[meal]=!data[meal];
+  saveDayHabit(d,data);
+  renderTracking();
+  if(data.every(Boolean)) showToast('🎉 Đủ 3 bữa hôm nay! Meal Streak đã tự cập nhật.');
+  else showToast(data[meal]?'Đã check-in bữa ăn ✓':'Đã bỏ check-in');
+}
+function updateDashboardStats(data){
+  const done=data.flat().filter(Boolean).length;
+  document.getElementById('dashDone').textContent=done+'/21';
+  document.getElementById('dashOnTime').textContent=done+'/21';
+  document.getElementById('dashStreak').textContent='🔥 '+currentStreak()+' ngày';
+}
 function goToTodayTracking(){go('tracking');setTimeout(()=>{document.getElementById('habitTable').scrollIntoView({behavior:'smooth',block:'center'})},100)}
 
 function toggleChat(){document.getElementById('chatbox').classList.toggle('show');if(document.getElementById('chatbox').classList.contains('show'))document.getElementById('chatInput').focus()}
@@ -133,6 +249,17 @@ function sendChat(){const input=document.getElementById('chatInput'),q=input.val
 function escapeHtml(s){return s.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 
 window.addEventListener('click',e=>{if(e.target===document.getElementById('recipeModal'))closeModal();if(e.target===document.getElementById('profileModal'))closeProfile();if(e.target===document.getElementById('postModal'))closePostModal()});
-window.addEventListener('DOMContentLoaded',()=>{setName(getName());document.getElementById('settingsName').value=getName();document.getElementById('profileName').value=getName();renderIngredients();renderRecipes();renderWeekSchedule();renderCommunity();renderTracking();if(!localStorage.getItem('mealMateOnboarded')){document.getElementById('loginName').value='';document.getElementById('loginModal').classList.add('show')}});
+window.addEventListener('DOMContentLoaded',()=>{
+  const savedName=(localStorage.getItem('mealMateName')||'').trim();
+  setName(savedName||DEFAULT_NAME);
+  document.getElementById('settingsName').value=savedName||DEFAULT_NAME;
+  document.getElementById('profileName').value=savedName||DEFAULT_NAME;
+  renderIngredients();renderRecipes();renderWeekSchedule();renderCommunity();renderTracking();
+  if(!savedName||!localStorage.getItem('mealMateOnboarded')){
+    document.getElementById('loginName').value='';
+    document.getElementById('loginModal').classList.add('show');
+    setTimeout(()=>document.getElementById('loginName').focus(),100);
+  }
+});
 </script>
 </body></html>
