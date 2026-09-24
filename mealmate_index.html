@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MealMate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="welcome">MealMate</h1>
+  </header>
+
+  <main>
+    <!-- Lịch của tôi -->
+    <section id="schedule">
+      <h2>Lịch của tôi</h2>
+      <div id="week-schedule"></div>
+      <button id="add-schedule">+ Thêm lịch</button>
+    </section>
+
+    <!-- Meal Streak -->
+    <section id="meal-streak">
+      <h2>Meal Streak</h2>
+      <p>Streak hiện tại: <span id="streak">0</span> ngày</p>
+      <div class="meals">
+        <label><input type="checkbox" id="breakfast"> Sáng</label>
+        <label><input type="checkbox" id="lunch"> Trưa</label>
+        <label><input type="checkbox" id="dinner"> Tối</label>
+      </div>
+      <button id="check-meals">Check-in bữa hôm nay</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
