@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MealMate — Bận đến đâu, ăn đúng giờ đến đó</title>
+<style>
+:root{--green:#087f5b;--green2:#10a873;--mint:#e9f8f1;--bg:#f7faf8;--text:#17352b;--muted:#6d817a;--border:#e1ebe6;--white:#fff;--orange:#ff9f43;--red:#ef6b67;--blue:#eaf3ff;--purple:#f2edff;--shadow:0 10px 28px rgba(20,70,55,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:flex}.sidebar{width:245px;background:#fff;border-right:1px solid var(--border);padding:20px 14px;position:fixed;inset:0 auto 0 0;z-index:10}.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;padding:0 10px 24px}.brand-icon{width:42px;height:42px;border-radius:12px;overflow:hidden;background:var(--mint)}.brand-icon img{width:100%;height:100%;object-fit:cover}.nav{display:grid;gap:7px}.nav button{border:0;background:transparent;text-align:left;padding:12px 14px;border-radius:12px;color:#557068;font-weight:650}.nav button:hover,.nav button.active{background:var(--mint);color:var(--green)}.sidebar-bottom{position:absolute;bottom:20px;left:14px;right:14px}.mini-user{display:flex;gap:10px;align-items:center;padding:12px;border-top:1px solid var(--border);cursor:pointer}.avatar{width:38px;height:38px;border-radius:50%;overflow:hidden;background:var(--mint);flex:0 0 auto}.avatar img{width:100%;height:100%;object-fit:cover}.main{margin-left:245px;width:calc(100% - 245px)}.topbar{height:70px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:flex-end;padding:0 30px;gap:14px;position:sticky;top:0;z-index:8}.profile-btn{border:0;background:#f4f7f5;border-radius:999px;padding:5px 10px 5px 5px;display:flex;gap:8px;align-items:center;color:var(--text);font-weight:700}.icon-btn{border:0;background:#f4f7f5;width:38px;height:38px;border-radius:12px}.page{display:none;padding:30px;max-width:1300px;margin:auto}.page.active{display:block}.eyebrow{color:var(--green);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.05em}.title{font-size:30px;margin:5px 0 8px}.sub{color:var(--muted);margin-top:0}.grid{display:grid;gap:18px}.grid-2{grid-template-columns:1.1fr .9fr}.grid-3{grid-template-columns:repeat(3,1fr)}.card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:var(--shadow)}.card h3{margin:0 0 8px}.hero{background:linear-gradient(135deg,#f2fbf6,#fff);border:1px solid var(--border);border-radius:24px;padding:35px 40px;display:flex;justify-content:space-between;align-items:center;overflow:hidden}.hero h1{font-size:46px;line-height:1.03;max-width:650px;margin:8px 0 18px}.hero p{color:var(--muted);max-width:650px;font-size:16px;line-height:1.6}.mascot{width:235px;height:235px;border-radius:50%;background:#e8f7ee;display:grid;place-items:center;overflow:hidden;box-shadow:0 15px 35px rgba(20,70,55,.10)}.mascot img{width:100%;height:100%;object-fit:cover}.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:750}.btn-primary{background:var(--green);color:#fff}.btn-light{background:var(--mint);color:var(--green)}.btn-outline{background:#fff;border:1px solid var(--border);color:var(--text)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.stat{background:#fff;border:1px solid var(--border);border-radius:15px;padding:17px}.stat b{display:block;font-size:24px;margin-top:5px}.muted{color:var(--muted);font-size:13px}.schedule{display:grid;gap:10px}.event{padding:13px 15px;border-radius:14px;display:flex;gap:12px;align-items:center}.event .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto}.event.blue{background:var(--blue)}.event.green{background:#e9f8f1}.event.orange{background:#fff1e6}.event.purple{background:var(--purple)}.meal{overflow:hidden;padding:0}.meal-img{height:145px;background:linear-gradient(135deg,#dff4e9,#fff1cf);display:grid;place-items:center;font-size:70px}.meal-body{padding:16px}.tag{display:inline-block;background:var(--mint);color:var(--green);padding:5px 9px;border-radius:999px;font-size:11px;font-weight:750;margin-right:5px}.meal-meta{display:flex;gap:13px;color:var(--muted);font-size:12px;margin:10px 0}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;gap:12px}.ingredient-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.ingredient{border:1px solid var(--border);padding:11px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:8px}.ingredient.selected{background:var(--mint);border-color:#bfe9d8}.check{color:var(--green);font-weight:900}.filters{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.filter{border:1px solid var(--border);background:#fff;border-radius:999px;padding:8px 13px}.filter.active{background:var(--green);color:#fff;border-color:var(--green)}.filter-group{background:#fff;border:1px solid var(--border);padding:10px;border-radius:16px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}.filter-label{font-weight:800;font-size:13px;margin-right:2px}.recipe{display:grid;grid-template-columns:1.05fr .95fr;gap:22px}.recipe-photo{min-height:330px;border-radius:20px;background:linear-gradient(135deg,#e0f4e9,#fff1d5);display:grid;place-items:center;font-size:130px}.recipe-side ul{line-height:2;color:#536a62;padding-left:20px}.input,.textarea{width:100%;border:1px solid var(--border);border-radius:12px;padding:11px 12px;background:#fff;outline:none}.input:focus,.textarea:focus{border-color:var(--green)}.textarea{min-height:100px;resize:vertical}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.toast{position:fixed;right:25px;bottom:25px;background:#17352b;color:#fff;padding:13px 17px;border-radius:12px;display:none;z-index:100}.modal{position:fixed;inset:0;background:rgba(15,40,30,.38);display:none;place-items:center;z-index:90;padding:20px}.modal.show{display:grid}.modal-box{width:min(600px,95vw);max-height:90vh;overflow:auto;background:#fff;border-radius:20px;padding:25px;box-shadow:0 30px 70px rgba(0,0,0,.2)}.close{float:right;border:0;background:#f2f5f3;border-radius:10px;width:34px;height:34px}.logo-big{width:105px;height:105px;border-radius:28px;overflow:hidden;margin:0 auto 12px}.logo-big img{width:100%;height:100%;object-fit:cover}.center{text-align:center}.login-actions{display:flex;gap:10px;margin-top:15px}.login-actions .btn{flex:1}.week-grid{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:10px;overflow-x:auto;padding-bottom:8px}.day-card{min-width:150px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:13px}.day-card.today{border:2px solid var(--green);box-shadow:0 8px 22px rgba(8,127,91,.10)}.day-name{font-weight:850}.day-date{font-size:12px;color:var(--muted);margin:2px 0 12px}.day-event{font-size:12px;padding:8px;border-radius:10px;margin:6px 0}.day-event.study{background:var(--blue)}.day-event.work{background:#fff1e6}.day-event.free{background:var(--mint)}.busy-pill{font-size:11px;font-weight:800;padding:5px 8px;border-radius:999px;display:inline-block;margin-top:4px}.busy-low{background:#e9f8f1;color:var(--green)}.busy-mid{background:#fff5d9;color:#a36a00}.busy-high{background:#ffe8e7;color:#b4433f}.tracking-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.habit-table{display:grid;grid-template-columns:90px repeat(7,1fr);gap:8px;align-items:center}.habit-cell{min-height:58px;border:1px solid var(--border);border-radius:11px;display:grid;place-items:center;background:#fafcfb}.habit-cell.head{min-height:42px;background:var(--mint);color:var(--green);font-weight:800}.meal-check{width:28px;height:28px;border-radius:9px;border:2px solid #cbdad4;background:#fff;display:grid;place-items:center;font-weight:900;color:#fff}.meal-check.done{background:var(--green);border-color:var(--green)}.meal-label{font-size:12px;font-weight:700}.legend{display:flex;gap:15px;flex-wrap:wrap;margin:13px 0 5px}.legend span{display:flex;align-items:center;gap:6px;font-size:12px;color:#536a62}.legend-dot{width:11px;height:11px;border-radius:50%;display:inline-block}.legend-green{background:var(--green)}.legend-gray{background:#cbdad4}.scale-chart{display:grid;grid-template-columns:32px 1fr;gap:8px;align-items:stretch}.y-axis{height:210px;display:flex;flex-direction:column;justify-content:space-between;color:var(--muted);font-size:11px;text-align:right;padding:5px 0 25px}.chart-area{height:210px;display:flex;gap:12px;align-items:flex-end;border-bottom:1px solid var(--border);padding:5px 8px 0;background:repeating-linear-gradient(to top,transparent 0,transparent 68px,#eef4f1 69px)}.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:5px}.stack{width:30px;display:flex;flex-direction:column-reverse;gap:2px;justify-content:flex-start}.seg{height:58px;border-radius:6px;background:#cbdad4}.seg.done{background:var(--green)}.bar-day{font-size:11px;color:var(--muted)}.streak{background:linear-gradient(135deg,#effbf5,#fff);border:1px solid #ccebdd}.streak-num{font-size:48px;font-weight:900;margin:8px 0}.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.post{background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}.post-media{height:190px;background:linear-gradient(135deg,#dff4e9,#fff1cf);display:grid;place-items:center;font-size:75px;position:relative}.reel-badge{position:absolute;left:12px;top:12px;background:rgba(23,53,43,.85);color:#fff;border-radius:999px;padding:5px 8px;font-size:11px}.post-body{padding:15px}.post-user{display:flex;align-items:center;gap:8px}.small-avatar{width:30px;height:30px;border-radius:50%;overflow:hidden;background:var(--mint)}.small-avatar img{width:100%;height:100%;object-fit:cover}.partner-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.partner{border:0;border-radius:10px;padding:8px 10px;font-weight:800;font-size:12px}.grab{background:#dff7e9;color:#087f5b}.shopee{background:#fff0e7;color:#e25a13}.gsm{background:#eaf3ff;color:#2466a8}.chatbot{position:fixed;right:24px;bottom:24px;z-index:70}.chatbot-fab{width:62px;height:62px;border-radius:50%;border:4px solid #fff;background:var(--mint);box-shadow:0 10px 30px rgba(20,70,55,.2);overflow:hidden;padding:0}.chatbot-fab img{width:100%;height:100%;object-fit:cover}.chatbox{position:absolute;right:0;bottom:74px;width:330px;background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:0 20px 55px rgba(0,0,0,.18);display:none;overflow:hidden}.chatbox.show{display:block}.chat-head{background:var(--green);color:#fff;padding:13px 15px;display:flex;align-items:center;gap:9px}.chat-head .small-avatar{background:#fff}.chat-body{height:260px;overflow:auto;padding:13px;background:#f8fbf9}.msg{max-width:85%;padding:9px 11px;border-radius:13px;margin:7px 0;font-size:13px;line-height:1.4}.msg.bot{background:#fff;border:1px solid var(--border)}.msg.user{background:var(--green);color:#fff;margin-left:auto}.chat-input{display:flex;gap:7px;padding:10px;border-top:1px solid var(--border)}.chat-input input{flex:1}.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.price{border:2px solid var(--green);background:#f1fbf6}.price-num{font-size:34px;font-weight:850}.custom-row{display:flex;gap:8px;margin-top:10px}.custom-row .input{flex:1}.post-create{display:grid;grid-template-columns:1fr 1fr;gap:12px}.empty-note{padding:18px;background:#f8fbf9;border:1px dashed #cbdad4;border-radius:14px;color:var(--muted)}
+@media(max-width:1100px){.week-grid{grid-template-columns:repeat(7,160px)}.community-grid{grid-template-columns:1fr 1fr}.tracking-wrap{grid-template-columns:1fr}}
+@media(max-width:900px){.sidebar{width:76px}.brand span,.nav button span,.sidebar-bottom{display:none}.nav button{text-align:center}.main{margin-left:76px;width:calc(100% - 76px)}.grid-2,.recipe,.profile-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.hero{padding:28px}.hero h1{font-size:36px}.mascot{width:170px;height:170px}.community-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.page{padding:18px}.grid-3,.community-grid{grid-template-columns:1fr}.hero{display:block}.hero h1{font-size:32px}.mascot{margin:20px auto 0}.topbar{padding:0 15px}.ingredient-list{grid-template-columns:1fr}.form-row,.post-create{grid-template-columns:1fr}.chatbox{width:min(330px,calc(100vw - 30px));right:-5px}.chatbot{right:15px;bottom:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-icon"><img src="mealmate-logo.png" alt="MealMate"></div><span>MealMate</span></div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard">🏠 <span>Tổng quan</span></button>
+    <button data-page="schedule">📅 <span>Lịch của tôi</span></button>
+    <button data-page="ingredients">🥬 <span>Nguyên liệu</span></button>
+    <button data-page="suggestions">🍱 <span>Gợi ý món ăn</span></button>
+    <button data-page="community">👥 <span>Cộng đồng</span></button>
+    <button data-page="tracking">📊 <span>Thói quen ăn uống</span></button>
+    <button data-page="settings">⚙️ <span>Cài đặt</span></button>
+  </nav>
+  <div class="sidebar-bottom"><div class="mini-user" onclick="openProfile()"><div class="avatar"><img src="mealmate-logo.png" alt="Avatar"></div><div><b id="sideName">Khách</b><div class="muted">Sinh viên</div></div></div></div>
+</aside>
+<main class="main">
+<header class="topbar"><button class="icon-btn" onclick="showToast('Bạn không có thông báo mới 🔔')">🔔</button><button class="profile-btn" onclick="openProfile()"><div class="avatar"><img src="mealmate-logo.png" alt="Avatar"></div><span id="topName">Khách</span>⌄</button></header>
+
+<section id="dashboard" class="page active">
+  <div class="hero"><div><div class="eyebrow">MealMate • Personal Meal Assistant</div><h1>Chào bạn, <span data-user-name>Khách</span>!<br>Bận đến đâu, ăn đúng giờ đến đó.</h1><p>MealMate kết nối lịch học, lịch làm thêm, thời gian rảnh, nguyên liệu và ngân sách để tìm cho bạn bữa ăn phù hợp nhất hôm nay.</p><button class="btn btn-primary" onclick="go('suggestions')">Xem gợi ý hôm nay →</button></div><div class="mascot"><img src="mealmate-logo.png" alt="Linh vật MealMate"></div></div>
+  <div class="stats"><div class="stat"><span class="muted">Bữa đúng giờ</span><b id="dashOnTime">0/21</b></div><div class="stat"><span class="muted">Bữa đã hoàn thành</span><b id="dashDone">0/21</b></div><div class="stat"><span class="muted">Chi phí TB/bữa</span><b>21.5k</b></div><div class="stat"><span class="muted">Meal streak</span><b id="dashStreak">🔥 0 ngày</b></div></div>
+  <div class="grid grid-2" style="margin-top:18px"><div class="card"><div class="section-head"><h3>Lịch hôm nay</h3><button class="btn btn-light" onclick="go('schedule')">Xem cả tuần</button></div><div class="schedule"><div class="event blue"><span class="dot" style="background:#5c9ded"></span><div><b>07:30 – 11:30</b><div class="muted">Học tại trường</div></div></div><div class="event green"><span class="dot" style="background:#10a873"></span><div><b>11:30 – 13:00</b><div class="muted">Thời gian rảnh • 90 phút</div></div></div><div class="event orange"><span class="dot" style="background:#ff9f43"></span><div><b>13:00 – 17:00</b><div class="muted">Làm thêm</div></div></div><div class="event purple"><span class="dot" style="background:#8e6ce7"></span><div><b>18:00 – 22:00</b><div class="muted">Thời gian rảnh</div></div></div></div></div>
+  <div class="card"><div class="section-head"><h3>MealMate gợi ý cho bạn</h3><span>☀️</span></div><div class="meal card"><div class="meal-img">🍳🥕🍚</div><div class="meal-body"><h3>Trứng cuộn rau + cơm</h3><div class="meal-meta"><span>⏱ 15 phút</span><span>💰 ~20.000đ</span><span>🥕 80% có sẵn</span></div><span class="tag">Cân bằng</span><span class="tag">Nhanh</span><button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="openRecipe('Trứng cuộn rau + cơm')">Nấu ngay</button></div></div></div></div>
+  <div class="card" style="margin-top:18px;background:#f0faf5"><div style="display:flex;gap:16px;align-items:center"><div class="avatar" style="width:58px;height:58px"><img src="mealmate-logo.png" alt="Mate"></div><div><b>Mate nhắc bạn 💚</b><p class="sub" style="margin:5px 0 0">Một bữa ăn ngon không chỉ giúp bạn đủ năng lượng, mà còn là cách để yêu thương chính mình.</p></div></div></div>
+</section>
+
+<section id="schedule" class="page"><div class="eyebrow">My Schedule</div><h1 class="title">Lịch của tôi</h1><p class="sub">Xem trực quan lịch học, làm thêm và thời gian rảnh từ Thứ 2 đến Chủ nhật.</p><div class="card"><div class="section-head"><h3>Lịch tuần này</h3><button class="btn btn-primary" onclick="addEvent()">+ Thêm lịch</button></div><div id="weekSchedule" class="week-grid"></div></div><div class="card" style="margin-top:18px"><h3>MealMate đọc lịch như thế nào?</h3><p class="sub">Lịch được phân bổ khác nhau theo từng ngày; Thứ 7 và Chủ nhật mặc định là thời gian rảnh. Bạn có thể chỉnh tiếp dữ liệu lịch trong phiên bản phát triển.</p><div class="legend"><span><i class="legend-dot" style="background:#5c9ded"></i>Học</span><span><i class="legend-dot" style="background:#ff9f43"></i>Làm thêm</span><span><i class="legend-dot" style="background:#10a873"></i>Rảnh</span></div></div></section>
+
+<section id="ingredients" class="page"><div class="eyebrow">My Ingredients</div><h1 class="title">Nguyên liệu của tôi</h1><p class="sub">Tích chọn nguyên liệu đang có trong phòng trọ hoặc tự gõ nguyên liệu mới.</p><div class="grid grid-2"><div class="card"><input id="ingredientSearch" class="input" placeholder="🔎 Tìm nguyên liệu..." oninput="renderIngredients()"><div id="ingredientCategories"></div><div class="custom-row"><input id="customIngredient" class="input" placeholder="Ví dụ: cá ngừ, nấm kim châm..."><button class="btn btn-primary" onclick="addCustomIngredient()">＋ Thêm</button></div><button class="btn btn-primary" style="margin-top:15px" onclick="saveIngredients()">Lưu nguyên liệu</button></div><div class="card"><div class="section-head"><div><h3>Nguyên liệu hiện có</h3><p class="sub" style="margin-bottom:0"><span id="selectedCount">0</span> loại</p></div><span>🧺</span></div><div id="selectedList"></div><button class="btn btn-light" style="margin-top:10px;width:100%" onclick="go('suggestions')">Tìm món từ nguyên liệu này →</button></div></div></section>
+
+<section id="suggestions" class="page"><div class="eyebrow">Personalized for you</div><h1 class="title">Gợi ý món ăn</h1><p class="sub">Lọc riêng theo <b>thời gian</b> và <b>mức giá</b>, sau đó chọn món phù hợp với nguyên liệu của bạn.</p><div class="filters"><div class="filter-group"><span class="filter-label">⏱ Thời gian</span><button class="filter active" data-time="all" onclick="setSuggestionFilter(this,'time')">Tất cả</button><button class="filter" data-time="10" onclick="setSuggestionFilter(this,'time')">≤ 10 phút</button><button class="filter" data-time="20" onclick="setSuggestionFilter(this,'time')">≤ 20 phút</button><button class="filter" data-time="30" onclick="setSuggestionFilter(this,'time')">≤ 30 phút</button></div><div class="filter-group"><span class="filter-label">💰 Mức giá</span><button class="filter active" data-price="all" onclick="setSuggestionFilter(this,'price')">Tất cả</button><button class="filter" data-price="20" onclick="setSuggestionFilter(this,'price')">&lt; 20k</button><button class="filter" data-price="40" onclick="setSuggestionFilter(this,'price')">20k–40k</button><button class="filter" data-price="60" onclick="setSuggestionFilter(this,'price')">&gt; 40k</button></div></div><div id="recipeGrid" class="grid grid-3"></div></section>
+
+<section id="community" class="page"><div class="eyebrow">MealMate Community</div><h1 class="title">Cộng đồng ăn ngon cùng nhau 👥</h1><p class="sub">Reel, KOL/KOC, bạn bè chia sẻ món ăn trong ngày — và bạn cũng có thể tự đăng.</p><div class="filters"><button class="filter active" onclick="filterCommunity('all',this)">🔥 Dành cho bạn</button><button class="filter" onclick="filterCommunity('reel',this)">🎬 Reels</button><button class="filter" onclick="filterCommunity('creator',this)">👩‍🍳 KOL/KOC</button><button class="filter" onclick="filterCommunity('friend',this)">👫 Bạn bè</button><button class="btn btn-light" onclick="openPostModal()">＋ Tạo Reel/Bài đăng</button></div><div id="communityGrid" class="community-grid"></div></section>
+
+<section id="tracking" class="page"><div class="eyebrow">My Eating</div><h1 class="title">Theo dõi thói quen ăn uống</h1><p class="sub">Mỗi ngày có 3 bữa. Tích đủ <b>3/3 bữa</b> để hoàn thành ngày và duy trì streak.</p><div class="stats"><div class="stat"><span class="muted">Bữa đã hoàn thành</span><b id="trackDone">0/21</b></div><div class="stat"><span class="muted">Ngày đủ 3 bữa</span><b id="fullDays">0/7</b></div><div class="stat"><span class="muted">Tỷ lệ hoàn thành</span><b id="completionRate">0%</b></div><div class="stat"><span class="muted">Streak hiện tại</span><b id="trackStreak">🔥 0 ngày</b></div></div><div class="tracking-wrap" style="margin-top:18px"><div class="card"><div class="section-head"><div><h3>Thang đo 7 ngày</h3><span class="muted" id="weekRange"></span></div><span>Thứ 2 → CN</span></div><div class="legend"><span><i class="legend-dot legend-green"></i>Đã hoàn thành</span><span><i class="legend-dot legend-gray"></i>Chưa hoàn thành</span></div><p class="muted">Cách đọc biểu đồ: mỗi cột tương ứng 1 ngày, tối đa <b>3 bữa</b>. Cột cao hơn = bạn hoàn thành nhiều bữa hơn.</p><div class="scale-chart"><div class="y-axis"><span>3</span><span>2</span><span>1</span><span>0</span></div><div id="habitChart" class="chart-area"></div></div><div class="muted" style="margin-top:8px;text-align:center">Số bữa hoàn thành trong ngày</div></div><div class="card streak"><h3>🔥 Meal Streak</h3><div class="streak-num" id="streakBig">0 ngày</div><p class="sub">Streak tăng khi bạn hoàn thành đủ 3 bữa trong ngày. Nếu hôm nay chưa đủ, chuỗi ngày hoàn thành gần nhất vẫn được giữ!</p><button class="btn btn-primary" onclick="goToTodayTracking()">Check-in bữa hôm nay</button></div></div><div class="card" style="margin-top:18px"><div class="section-head"><h3>Check-in 3 bữa trong tuần</h3><span class="muted">Thống kê từ Thứ 2 → Chủ nhật</span></div><div id="habitTable" class="habit-table"></div></div></section>
+
+<section id="settings" class="page"><div class="eyebrow">Profile & MealMate Plus</div><h1 class="title">Cá nhân hóa</h1><p class="sub">Tên hiển thị có thể thay đổi bất cứ lúc nào trên thiết bị này.</p><div class="profile-grid"><div class="card"><h3>Thông tin của bạn</h3><div class="form-row"><div><label class="muted">Tên hiển thị</label><input id="settingsName" class="input"></div><div><label class="muted">Ngân sách/ngày</label><input class="input" value="70.000đ"></div></div><button class="btn btn-primary" onclick="saveNameFromSettings()">Lưu tên</button><h3 style="margin-top:24px">Ưu tiên</h3><div class="filters"><button class="filter active">💰 Tiết kiệm</button><button class="filter active">⚡ Nhanh</button><button class="filter">🥗 Healthy</button><button class="filter">🍳 Dễ nấu</button></div><p class="muted">Lưu ý: đây là prototype front-end, tên được lưu bằng trình duyệt (localStorage), chưa phải tài khoản thật dùng chung nhiều thiết bị.</p></div><div class="card price"><div class="tag">MEALMATE PLUS</div><h2>Ăn uống thông minh hơn</h2><div class="price-num">19.000đ <small>/ tháng</small></div><p class="sub">Mở khóa các tính năng nâng cao.</p><ul style="line-height:2;color:#536a62"><li>Gợi ý món không giới hạn</li><li>Lên kế hoạch bữa ăn theo tuần</li><li>Danh sách mua sắm tự động</li><li>Theo dõi dinh dưỡng chi tiết</li><li>Trợ lý AI MealMate</li></ul><button class="btn btn-primary" style="width:100%" onclick="showToast('Đây là prototype — thanh toán chưa kết nối.')">Nâng cấp ngay</button></div></div><div class="card" style="margin-top:18px"><h3>🔗 Đối tác mua đồ ăn</h3><p class="sub">Khi người dùng muốn đặt món, các nút đối tác sẽ mở trang tương ứng. Liên kết hiện là link thông thường; để nhận hoa hồng cần thay bằng affiliate/tracking link chính thức sau khi có hợp tác.</p><div class="partner-row"><button class="partner grab" onclick="openPartner('https://www.grab.com/vn/en/food/')">GrabFood</button><button class="partner shopee" onclick="openPartner('https://shopeefood.vn/')">ShopeeFood</button><button class="partner gsm" onclick="openPartner('https://www.greensm.com/vn-vi/greensm-ngon')">Xanh SM Food</button></div></div></section>
+</main></div>
+
+<div class="chatbot"><div id="chatbox" class="chatbox"><div class="chat-head"><div class="small-avatar"><img src="mealmate-logo.png" alt="Mate"></div><div><b>Mate</b><div style="font-size:11px;opacity:.85">Trợ lý MealMate</div></div><button style="margin-left:auto;border:0;background:transparent;color:#fff;font-size:20px" onclick="toggleChat()">×</button></div><div id="chatBody" class="chat-body"><div class="msg bot">Chào <span data-user-name>Khách</span>! Mình là Mate 🥬 Bạn có thể hỏi mình về món nhanh, nguyên liệu hoặc bữa ăn hôm nay.</div></div><div class="chat-input"><input id="chatInput" class="input" placeholder="Hỏi Mate..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn btn-primary" onclick="sendChat()">Gửi</button></div></div><button class="chatbot-fab" onclick="toggleChat()"><img src="mealmate-logo.png" alt="Chat với Mate"></button></div>
+
+<div class="modal" id="loginModal"><div class="modal-box center"><div class="logo-big"><img src="mealmate-logo.png" alt="MealMate"></div><div class="eyebrow">WELCOME TO MEALMATE</div><h2>Hôm nay bạn tên gì?</h2><p class="sub">Nhập tên bạn muốn MealMate hiển thị trong ứng dụng.</p><input id="loginName" class="input" placeholder="Ví dụ: Khánh Huyền" maxlength="30" onkeydown="if(event.key==='Enter')saveLoginName()"><div class="login-actions"><button class="btn btn-primary" onclick="saveLoginName()">Bắt đầu</button></div></div></div>
+<div class="modal" id="profileModal"><div class="modal-box"><button class="close" onclick="closeProfile()">×</button><div class="eyebrow">PROFILE</div><h2>Thông tin hiển thị</h2><p class="sub">Bạn có thể đổi tên bất cứ lúc nào.</p><label class="muted">Tên hiển thị</label><input id="profileName" class="input" maxlength="30" style="margin-top:6px"><button class="btn btn-primary" style="margin-top:12px;width:100%" onclick="saveProfileName()">Lưu tên mới</button></div></div>
+<div class="modal" id="recipeModal"><div class="modal-box"><button class="close" onclick="closeModal()">×</button><div class="eyebrow">MEALMATE RECIPE</div><h2 id="recipeTitle"></h2><div class="recipe" style="margin-top:18px"><div id="recipeEmoji" class="recipe-photo">🍳🥕</div><div class="recipe-side"><h3>Nguyên liệu</h3><ul id="recipeIngredients"></ul><h3>Cách làm</h3><ol id="recipeSteps"></ol><div class="partner-row"><button class="partner grab" onclick="openPartner('https://www.grab.com/vn/en/food/')">Mua trên GrabFood</button><button class="partner shopee" onclick="openPartner('https://shopeefood.vn/')">Mua trên ShopeeFood</button><button class="partner gsm" onclick="openPartner('https://www.greensm.com/vn-vi/greensm-ngon')">Mua trên Xanh SM Food</button></div></div></div></div></div>
+<div class="modal" id="postModal"><div class="modal-box"><button class="close" onclick="closePostModal()">×</button><div class="eyebrow">COMMUNITY</div><h2>Tạo Reel / Bài đăng</h2><p class="sub">Prototype: nội dung sẽ được lưu trên trình duyệt này.</p><div class="post-create"><div><label class="muted">Loại</label><select id="postType" class="input" style="margin-top:6px"><option value="friend">Bài đăng bạn bè</option><option value="reel">Reel</option><option value="creator">KOL/KOC</option></select></div><div><label class="muted">Món ăn</label><input id="postDish" class="input" style="margin-top:6px" placeholder="Ví dụ: Cơm trứng kim chi"></div></div><label class="muted" style="display:block;margin-top:12px">Nội dung</label><textarea id="postText" class="textarea" placeholder="Chia sẻ món ăn hôm nay của bạn..."></textarea><button class="btn btn-primary" style="width:100%;margin-top:12px" onclick="createPost()">Đăng ngay</button></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const pages=[...document.querySelectorAll('.page')];
+const DEFAULT_NAME='Khách';
+const logo='mealmate-logo.png';
+const partnerLinks={grab:'https://www.grab.com/vn/en/food/',shopee:'https://shopeefood.vn/',gsm:'https://www.greensm.com/vn-vi/greensm-ngon'};
+function getName(){return localStorage.getItem('mealMateName')||DEFAULT_NAME}
+function setName(name){name=(name||'').trim().replace(/\s+/g,' ').slice(0,30);if(!name)return false;localStorage.setItem('mealMateName',name);document.querySelectorAll('[data-user-name]').forEach(x=>x.textContent=name);document.getElementById('sideName').textContent=name;document.getElementById('topName').textContent=name;document.getElementById('settingsName').value=name;document.getElementById('profileName').value=name;return true}
+function go(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='tracking')renderTracking();if(id==='schedule')renderWeekSchedule();if(id==='ingredients')renderIngredients();if(id==='suggestions')renderRecipes();if(id==='community')renderCommunity()}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2800)}
+function openProfile(){document.getElementById('profileName').value=getName();document.getElementById('profileModal').classList.add('show')}
+function closeProfile(){document.getElementById('profileModal').classList.remove('show')}
+function saveLoginName(){const n=document.getElementById('loginName').value;if(!setName(n)){showToast('Hãy nhập tên của bạn nhé!');return}localStorage.setItem('mealMateOnboarded','1');document.getElementById('loginModal').classList.remove('show');showToast('Chào mừng '+getName()+' đến với MealMate 💚')}
+function saveProfileName(){const n=document.getElementById('profileName').value;if(setName(n)){closeProfile();showToast('Đã đổi tên hiển thị ✓')}}
+function saveNameFromSettings(){const n=document.getElementById('settingsName').value;if(setName(n))showToast('Đã lưu tên ✓')}
+function openPartner(url){window.open(url,'_blank','noopener,noreferrer')}
+function addEvent(){showToast('Prototype: bạn có thể thêm form lịch học/làm thêm ở bước phát triển tiếp theo.')}
+
+const ingredientData={
+'Protein':[['🥚','Trứng'],['🍗','Thịt gà'],['🥩','Thịt bò'],['🐟','Cá'],['🐟','Cá ngừ'],['🦐','Tôm'],['🥢','Đậu phụ'],['🥓','Xúc xích'],['🍖','Thịt heo'],['🥛','Sữa']],
+'Rau củ & trái cây':[['🥕','Cà rốt'],['🥬','Bắp cải'],['🥬','Rau muống'],['🥦','Bông cải xanh'],['🍅','Cà chua'],['🥒','Dưa chuột'],['🌽','Ngô'],['🍄','Nấm'],['🥔','Khoai tây'],['🧅','Hành tây'],['🧄','Tỏi'],['🥑','Bơ'],['🍌','Chuối'],['🍎','Táo']],
+'Tinh bột & khác':[['🍚','Gạo'],['🍜','Mì gói'],['🍝','Mì Ý'],['🥖','Bánh mì'],['🌾','Yến mạch'],['🫗','Dầu ăn'],['🧂','Muối'],['🫙','Nước mắm'],['🥫','Nước tương'],['🌶️','Tương ớt'],['🧀','Phô mai'],['🥜','Đậu phộng']]
+};
+let selectedIngredients=JSON.parse(localStorage.getItem('mealMateIngredients')||'null')||['Trứng','Thịt gà','Cà rốt','Bắp cải','Gạo','Dầu ăn'];
+let customIngredients=JSON.parse(localStorage.getItem('mealMateCustomIngredients')||'[]');
+function allIngredientItems(){const a=[];Object.values(ingredientData).forEach(cat=>cat.forEach(x=>a.push(x)));customIngredients.forEach(x=>a.push(['📝',x]));return a}
+function renderIngredients(){const q=(document.getElementById('ingredientSearch').value||'').toLowerCase();const root=document.getElementById('ingredientCategories');root.innerHTML='';Object.entries(ingredientData).forEach(([cat,items])=>{const filtered=items.filter(x=>x[1].toLowerCase().includes(q));if(!filtered.length)return;const wrap=document.createElement('div');wrap.style.marginTop='18px';wrap.innerHTML='<h3>'+cat+'</h3><div class="ingredient-list"></div>';const box=wrap.querySelector('.ingredient-list');filtered.forEach(([icon,name])=>box.appendChild(ingredientEl(icon,name)));root.appendChild(wrap)});const customs=customIngredients.filter(x=>x.toLowerCase().includes(q));if(customs.length){const wrap=document.createElement('div');wrap.style.marginTop='18px';wrap.innerHTML='<h3>Nguyên liệu tự thêm</h3><div class="ingredient-list"></div>';const box=wrap.querySelector('.ingredient-list');customs.forEach(name=>box.appendChild(ingredientEl('📝',name)));root.appendChild(wrap)};refreshSelected()}
+function ingredientEl(icon,name){const d=document.createElement('div');d.className='ingredient '+(selectedIngredients.includes(name)?'selected':'');d.dataset.name=name;d.innerHTML=icon+' '+name+' <span class="check">'+(selectedIngredients.includes(name)?'✓':'')+'</span>';d.onclick=()=>{const i=selectedIngredients.indexOf(name);if(i>=0)selectedIngredients.splice(i,1);else selectedIngredients.push(name);localStorage.setItem('mealMateIngredients',JSON.stringify(selectedIngredients));renderIngredients()};return d}
+function addCustomIngredient(){const input=document.getElementById('customIngredient');const name=input.value.trim().replace(/\s+/g,' ');if(!name)return; if(!customIngredients.includes(name))customIngredients.push(name);if(!selectedIngredients.includes(name))selectedIngredients.push(name);localStorage.setItem('mealMateCustomIngredients',JSON.stringify(customIngredients));localStorage.setItem('mealMateIngredients',JSON.stringify(selectedIngredients));input.value='';renderIngredients();showToast('Đã thêm '+name+' vào nguyên liệu ✓')}
+function refreshSelected(){const box=document.getElementById('selectedList');box.innerHTML='';document.getElementById('selectedCount').textContent=selectedIngredients.length;if(!selectedIngredients.length){box.innerHTML='<div class="empty-note">Bạn chưa chọn nguyên liệu nào.</div>';return}selectedIngredients.forEach(name=>{const d=document.createElement('div');d.className='ingredient';d.innerHTML='🧺 '+name+'<span class="check">✓</span>';box.appendChild(d)})}
+function saveIngredients(){localStorage.setItem('mealMateIngredients',JSON.stringify(selectedIngredients));showToast('Đã cập nhật nguyên liệu ✓')}
+
+const recipes=[
+['Cơm gà xào rau củ',20,25,'🍗🥕🍚',['Thịt gà','Cà rốt','Bắp cải','Gạo'],'Healthy'],['Trứng cuộn rau + cơm',15,20,'🍳🥕🍚',['Trứng','Cà rốt','Gạo'],'Cân bằng'],['Canh trứng cà chua + cơm',10,12,'🥚🍅🍚',['Trứng','Cà chua','Gạo'],'Nhanh'],['Mì trứng rau cải',10,15,'🍜🥬🥚',['Mì gói','Trứng','Rau muống'],'Siêu nhanh'],['Cơm rang trứng',12,15,'🍳🍚',['Trứng','Gạo','Hành tây'],'Tiết kiệm'],['Đậu phụ sốt cà chua',20,18,'🥢🍅',['Đậu phụ','Cà chua','Gạo'],'Healthy'],['Bún trộn gà rau củ',25,30,'🍜🥗🍗',['Thịt gà','Dưa chuột','Cà rốt'],'Đủ rau'],['Sandwich trứng rau',8,18,'🥪🥚🥬',['Bánh mì','Trứng','Dưa chuột'],'Ăn sáng'],['Cháo trứng thịt bằm',30,28,'🍲🥚🍖',['Trứng','Thịt heo','Gạo'],'Ấm bụng'],['Mì Ý sốt bò cà chua',30,45,'🍝🥩🍅',['Thịt bò','Mì Ý','Cà chua'],'No lâu'],['Cơm cá ngừ sốt tương',15,32,'🐟🍚',['Cá ngừ','Gạo','Nước tương'],'Giàu đạm'],['Tôm xào bông cải',20,42,'🦐🥦',['Tôm','Bông cải xanh','Cà rốt'],'Healthy'],['Khoai tây trứng áp chảo',18,22,'🥔🍳',['Khoai tây','Trứng'],'Dễ nấu'],['Yến mạch chuối sữa',5,16,'🥣🍌🥛',['Yến mạch','Chuối','Sữa'],'Bữa sáng'],['Cơm thịt heo hành tây',25,35,'🍖🧅🍚',['Thịt heo','Hành tây','Gạo'],'Đậm vị'],['Bánh mì cá ngừ trứng',10,30,'🥪🐟🥚',['Bánh mì','Cá ngừ','Trứng'],'Nhanh'],['Salad gà bơ',15,38,'🥗🍗🥑',['Thịt gà','Bơ','Dưa chuột'],'Healthy'],['Đậu phụ xào nấm',15,22,'🥢🍄',['Đậu phụ','Nấm','Hành tây'],'Tiết kiệm']
+];
+let suggestionFilter={time:'all',price:'all'};
+function setSuggestionFilter(el,type){el.parentElement.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));el.classList.add('active');suggestionFilter[type]=el.dataset[type];renderRecipes()}
+function recipeMatch(r){const time=+r[1],price=+r[2];let ok=true;if(suggestionFilter.time!=='all')ok=time<=+suggestionFilter.time;if(suggestionFilter.price!=='all'){const p=+suggestionFilter.price;if(p===20)ok=ok&&price<20;else if(p===40)ok=ok&&price>=20&&price<=40;else if(p===60)ok=ok&&price>40}return ok}
+function renderRecipes(){const grid=document.getElementById('recipeGrid');grid.innerHTML='';const list=recipes.filter(recipeMatch);if(!list.length){grid.innerHTML='<div class="empty-note" style="grid-column:1/-1">Không có món phù hợp với bộ lọc này. Hãy thử nới thời gian hoặc mức giá.</div>';return}list.forEach(r=>{const d=document.createElement('div');d.className='meal card';d.innerHTML='<div class="meal-img">'+r[3]+'</div><div class="meal-body"><h3>'+r[0]+'</h3><div class="meal-meta"><span>⏱ '+r[1]+' phút</span><span>💰 '+r[2]+'.000đ</span></div><span class="tag">'+r[6]+'</span><span class="tag">'+(selectedIngredients.filter(x=>r[4].includes(x)).length)+' nguyên liệu có sẵn</span><button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="openRecipe(\''+r[0].replace(/'/g,"\\'")+'\')">Xem chi tiết</button></div></div>';grid.appendChild(d)})}
+function openRecipe(name){const r=recipes.find(x=>x[0]===name)||recipes[0];document.getElementById('recipeTitle').textContent=r[0];document.getElementById('recipeEmoji').textContent=r[3];document.getElementById('recipeIngredients').innerHTML=r[4].map(x=>'<li>'+x+'</li>').join('');document.getElementById('recipeSteps').innerHTML=['Sơ chế và chuẩn bị nguyên liệu.','Làm nóng chảo/nồi và cho nguyên liệu cần nấu vào.','Nêm gia vị vừa ăn, đảo/nấu đến khi chín.','Bày ra đĩa và thưởng thức.'].map(x=>'<li>'+x+'</li>').join('');document.getElementById('recipeModal').classList.add('show')}
+function closeModal(){document.getElementById('recipeModal').classList.remove('show')}
+
+function monday(d){const x=new Date(d);const day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);x.setHours(0,0,0,0);return x}
+function fmt(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')}
+function dayName(i){return ['T2','T3','T4','T5','T6','T7','CN'][i]}
+const DEFAULT_SCHEDULE=[
+  [['07:30–11:30','Học tại trường','study'],['13:00–17:00','Làm thêm','work'],['18:00–22:00','Thời gian rảnh','free']],
+  [['07:30–11:30','Học tại trường','study'],['13:00–17:00','Thời gian rảnh','free'],['18:00–21:00','Làm thêm','work']],
+  [['07:30–11:30','Thời gian rảnh','free'],['13:00–17:00','Học tại trường','study'],['18:00–22:00','Thời gian rảnh','free']],
+  [['07:30–11:30','Học tại trường','study'],['13:00–17:00','Làm thêm','work'],['18:00–22:00','Thời gian rảnh','free']],
+  [['07:30–11:30','Học tại trường','study'],['13:00–17:00','Thời gian rảnh','free'],['18:00–21:00','Làm thêm','work']],
+  [['08:00–12:00','Thời gian rảnh','free'],['13:00–17:00','Thời gian rảnh','free'],['18:00–22:00','Thời gian rảnh','free']],
+  [['08:00–12:00','Thời gian rảnh','free'],['13:00–17:00','Thời gian rảnh','free'],['18:00–22:00','Thời gian rảnh','free']]
+];
+
+function getSchedule(){
+  const saved=JSON.parse(localStorage.getItem('mealMateSchedule')||'null');
+  return Array.isArray(saved)&&saved.length===7?saved:DEFAULT_SCHEDULE;
+}
+
+function renderWeekSchedule(){
+  const root=document.getElementById('weekSchedule');
+  root.innerHTML='';
+  const start=monday(new Date());
+  const schedule=getSchedule();
+
+  for(let i=0;i<7;i++){
+    const d=new Date(start);
+    d.setDate(start.getDate()+i);
+    const events=schedule[i]||[];
+    const busy=i>=5?'Nhẹ':events.filter(x=>x[2]!=='free').length>=2?'Cao':events.some(x=>x[2]!=='free')?'Vừa':'Nhẹ';
+    const c=document.createElement('div');
+    c.className='day-card'+(d.toDateString()===new Date().toDateString()?' today':'');
+    c.innerHTML='<div class="day-name">'+dayName(i)+'</div><div class="day-date">'+fmt(d)+'</div>'+
+      events.map(p=>'<div class="day-event '+p[2]+'"><b>'+p[0]+'</b><br>'+p[1]+'</div>').join('')+
+      '<span class="busy-pill '+(busy==='Cao'?'busy-high':busy==='Vừa'?'busy-mid':'busy-low')+'">Lịch bận: '+busy+'</span>';
+    root.appendChild(c);
+  }
+}
+
+const communitySeed=[
+{type:'reel',user:'Mai Foodie',role:'KOC',emoji:'🍜',title:'Mì trứng 10 phút cho ngày chạy deadline',text:'Không có thời gian vẫn có thể ăn nóng và đủ năng lượng.',likes:128},
+{type:'creator',user:'Bếp Nhà An',role:'KOL',emoji:'🍗🥗',title:'Cơm gà rau củ cho sinh viên',text:'Cách chia phần rau – đạm – tinh bột đơn giản.',likes:356},
+{type:'friend',user:'Linh • FTU',role:'Bạn bè',emoji:'🍳🍚',title:'Bữa trưa hôm nay của mình',text:'Trứng cuộn rau + cơm, 15 phút là xong!',likes:24},
+{type:'reel',user:'Ăn Gì Hôm Nay',role:'KOC',emoji:'🥪',title:'3 bữa sáng dưới 20k',text:'Gợi ý nhanh cho sinh viên thuê trọ.',likes:219},
+{type:'creator',user:'Healthy With Vy',role:'KOL',emoji:'🥑🥗',title:'Salad gà bơ dễ làm',text:'Một lựa chọn nhẹ nhàng cho buổi tối.',likes:442},
+{type:'friend',user:'Minh • NEU',role:'Bạn bè',emoji:'🍲',title:'Cháo trứng lúc 11 giờ đêm',text:'Deadline xong mới nhớ ra mình chưa ăn tối 😭',likes:18}
+];
+let userPosts=JSON.parse(localStorage.getItem('mealMatePosts')||'[]');let communityFilter='all';
+function filterCommunity(type,el){communityFilter=type;el.parentElement.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderCommunity()}
+function renderCommunity(){const root=document.getElementById('communityGrid');root.innerHTML='';const all=[...userPosts,...communitySeed];const list=communityFilter==='all'?all:all.filter(x=>x.type===communityFilter);list.forEach(p=>{const d=document.createElement('article');d.className='post';d.innerHTML='<div class="post-media">'+p.emoji+'<span class="reel-badge">'+(p.type==='reel'?'🎬 Reel':p.role)+'</span></div><div class="post-body"><div class="post-user"><div class="small-avatar"><img src="'+logo+'" alt="avatar"></div><div><b>'+p.user+'</b><div class="muted">'+p.role+'</div></div></div><h3 style="margin-top:12px">'+p.title+'</h3><p class="sub">'+p.text+'</p><div style="font-size:12px;color:var(--muted)">♡ '+p.likes+' lượt thích</div><div class="partner-row"><button class="partner grab" onclick="openPartner(partnerLinks.grab)">GrabFood</button><button class="partner shopee" onclick="openPartner(partnerLinks.shopee)">ShopeeFood</button><button class="partner gsm" onclick="openPartner(partnerLinks.gsm)">Xanh SM Food</button></div></div>';root.appendChild(d)})}
+function openPostModal(){document.getElementById('postModal').classList.add('show')}
+function closePostModal(){document.getElementById('postModal').classList.remove('show')}
+function createPost(){const type=document.getElementById('postType').value,dish=document.getElementById('postDish').value.trim(),text=document.getElementById('postText').value.trim();if(!dish||!text){showToast('Hãy nhập món ăn và nội dung nhé!');return}const p={type,user:getName(),role:type==='creator'?'KOL/KOC':type==='reel'?'Bạn':'Bạn bè',emoji:type==='reel'?'🎬':'🍽️',title:dish,text,likes:0};userPosts.unshift(p);localStorage.setItem('mealMatePosts',JSON.stringify(userPosts));closePostModal();document.getElementById('postDish').value='';document.getElementById('postText').value='';renderCommunity();showToast('Đã đăng bài lên cộng đồng ✓')}
+
+function dateKey(d=new Date()){
+  const x=new Date(d);
+  return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');
+}
+function habitKey(d=new Date()){return 'mealMateHabit_'+dateKey(d)}
+function getDayHabit(d=new Date()){
+  const data=JSON.parse(localStorage.getItem(habitKey(d))||'null');
+  return Array.isArray(data)&&data.length===3?data.map(Boolean):[false,false,false];
+}
+function saveDayHabit(d,data){localStorage.setItem(habitKey(d),JSON.stringify(data.map(Boolean)))}
+function getHabit(){
+  const start=monday(new Date()),data=[];
+  for(let i=0;i<7;i++){
+    const d=new Date(start);d.setDate(start.getDate()+i);
+    data.push(getDayHabit(d));
+  }
+  return data;
+}
+function currentStreak(){
+  // Tìm ngày gần nhất đã hoàn thành đủ 3 bữa.
+  // Nếu hôm nay chưa đủ, streak vẫn được giữ từ ngày hoàn thành gần nhất.
+  // Sau đó đếm ngược các ngày LIÊN TIẾP đã hoàn thành.
+  let cursor=new Date();
+
+  // Nếu hôm nay chưa đủ 3 bữa, bắt đầu tìm từ hôm qua.
+  if(!getDayHabit(cursor).every(Boolean)){
+    cursor.setDate(cursor.getDate()-1);
+  }
+
+  // Tìm ngày hoàn thành gần nhất, không bị giới hạn bởi vị trí trong tuần.
+  let safety=0;
+  while(!getDayHabit(cursor).every(Boolean) && safety<365){
+    cursor.setDate(cursor.getDate()-1);
+    safety++;
+  }
+
+  if(safety>=365) return 0;
+
+  // Đếm chuỗi ngày liên tiếp hoàn thành.
+  let streak=0;
+  while(getDayHabit(cursor).every(Boolean) && streak<365){
+    streak++;
+    cursor.setDate(cursor.getDate()-1);
+  }
+
+  return streak;
+}
+function renderTracking(){
+  const data=getHabit();
+  const done=data.flat().filter(Boolean).length;
+  const full=data.filter(x=>x.every(Boolean)).length;
+  document.getElementById('trackDone').textContent=done+'/21';
+  document.getElementById('fullDays').textContent=full+'/7';
+  document.getElementById('completionRate').textContent=Math.round(done/21*100)+'%';
+
+  const streak=currentStreak();
+  document.getElementById('trackStreak').textContent='🔥 '+streak+' ngày';
+  document.getElementById('streakBig').textContent=streak+' ngày';
+
+  const start=monday(new Date()),end=new Date(start);
+  end.setDate(start.getDate()+6);
+  document.getElementById('weekRange').textContent=fmt(start)+' – '+fmt(end);
+
+  const chart=document.getElementById('habitChart');
+  chart.innerHTML='';
+  for(let i=0;i<7;i++){
+    const col=document.createElement('div');col.className='bar-col';
+    const stack=document.createElement('div');stack.className='stack';
+    for(let m=0;m<3;m++){
+      const seg=document.createElement('div');
+      seg.className='seg '+(data[i][m]?'done':'');
+      seg.title=['Bữa sáng','Bữa trưa','Bữa tối'][m]+(data[i][m]?' • đã hoàn thành':' • chưa hoàn thành');
+      stack.appendChild(seg);
+    }
+    col.appendChild(stack);
+    col.insertAdjacentHTML('beforeend','<div class="bar-day">'+dayName(i)+'</div>');
+    chart.appendChild(col);
+  }
+
+  const table=document.getElementById('habitTable');
+  table.innerHTML='<div></div>'+Array.from({length:7},(_,i)=>'<div class="habit-cell head">'+dayName(i)+'</div>').join('');
+  ['🌅 Sáng','☀️ Trưa','🌙 Tối'].forEach((label,m)=>{
+    table.insertAdjacentHTML('beforeend','<div class="meal-label">'+label+'</div>');
+    for(let i=0;i<7;i++){
+      const cell=document.createElement('div');cell.className='habit-cell';
+      const b=document.createElement('button');
+      b.className='meal-check '+(data[i][m]?'done':'');
+      b.textContent=data[i][m]?'✓':'';
+      b.title='Tích để ghi nhận '+label+' '+dayName(i);
+      b.onclick=()=>toggleHabit(i,m);
+      cell.appendChild(b);table.appendChild(cell);
+    }
+  });
+  updateDashboardStats(data);
+}
+function toggleHabit(day,meal){
+  const start=monday(new Date()),d=new Date(start);
+  d.setDate(start.getDate()+day);
+  const data=getDayHabit(d);
+  data[meal]=!data[meal];
+  saveDayHabit(d,data);
+  renderTracking();
+  if(data.every(Boolean)){
+    const today=dateKey(new Date())===dateKey(d);
+    showToast(today?'🎉 Đủ 3 bữa hôm nay! Meal Streak đã tự cập nhật.':'🎉 Ngày này đã đủ 3 bữa! Meal Streak đã cập nhật.');
+  }else{
+    showToast(data[meal]?'Đã check-in bữa ăn ✓':'Đã bỏ check-in');
+  }
+}
+function updateDashboardStats(data){
+  const done=data.flat().filter(Boolean).length;
+  document.getElementById('dashDone').textContent=done+'/21';
+  document.getElementById('dashOnTime').textContent=done+'/21';
+  document.getElementById('dashStreak').textContent='🔥 '+currentStreak()+' ngày';
+}
+function goToTodayTracking(){go('tracking');setTimeout(()=>{document.getElementById('habitTable').scrollIntoView({behavior:'smooth',block:'center'})},100)}
+
+function toggleChat(){document.getElementById('chatbox').classList.toggle('show');if(document.getElementById('chatbox').classList.contains('show'))document.getElementById('chatInput').focus()}
+function sendChat(){const input=document.getElementById('chatInput'),q=input.value.trim();if(!q)return;const body=document.getElementById('chatBody');body.insertAdjacentHTML('beforeend','<div class="msg user">'+escapeHtml(q)+'</div>');let a='Mình gợi ý bạn xem mục “Gợi ý món ăn” để lọc theo thời gian và mức giá nhé 🍱';const l=q.toLowerCase();if(l.includes('món')||l.includes('ăn'))a='Nếu hôm nay bận, hãy thử các món ≤ 20 phút như trứng cuộn rau, mì trứng rau cải hoặc cơm rang trứng. Bạn có thể lọc ngay ở “Gợi ý món ăn”.';else if(l.includes('nguyên liệu'))a='Bạn có thể vào “Nguyên liệu”, tích các nguyên liệu đang có hoặc tự gõ nguyên liệu mới. Mình sẽ dùng chúng để hiển thị mức độ phù hợp của món.';else if(l.includes('streak'))a='Streak tăng khi bạn hoàn thành đủ 3 bữa trong một ngày. Vào “Thói quen ăn uống” để check-in nhé 🔥';setTimeout(()=>{body.insertAdjacentHTML('beforeend','<div class="msg bot">'+a+'</div>');body.scrollTop=body.scrollHeight},250);input.value='';body.scrollTop=body.scrollHeight}
+function escapeHtml(s){return s.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+
+window.addEventListener('click',e=>{if(e.target===document.getElementById('recipeModal'))closeModal();if(e.target===document.getElementById('profileModal'))closeProfile();if(e.target===document.getElementById('postModal'))closePostModal()});
+window.addEventListener('DOMContentLoaded',()=>{
+  const savedName=(localStorage.getItem('mealMateName')||'').trim();
+  setName(savedName||DEFAULT_NAME);
+  document.getElementById('settingsName').value=savedName||DEFAULT_NAME;
+  document.getElementById('profileName').value=savedName||DEFAULT_NAME;
+  renderIngredients();renderRecipes();renderWeekSchedule();renderCommunity();renderTracking();
+  if(!savedName||!localStorage.getItem('mealMateOnboarded')){
+    document.getElementById('loginName').value='';
+    document.getElementById('loginModal').classList.add('show');
+    setTimeout(()=>document.getElementById('loginName').focus(),100);
+  }
+});
+</script>
+</body></html>
